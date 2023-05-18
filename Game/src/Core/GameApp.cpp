@@ -7,6 +7,8 @@
 #include <Engine.h>
 #include "Entities/PlayerController.h"
 #include "Entities/CameraController.h"
+#include "Entities/GameComponents.h"
+#include "BallController.h"
 #include <Logger/Logger.h>
 
 void Game::GameApp::GameSpecificWindowData()
@@ -29,6 +31,7 @@ bool Game::GameApp::GameSpecificInit()
 
     InitCamera();
     InitPlayer();
+    InitBall();
 
     m_EngineSystem.m_AudioSystem->PlayBackgroundMusic("title");
     m_EngineSystem.m_AudioSystem->SetMusicVolume(10);
@@ -41,6 +44,7 @@ void Game::GameApp::GameSpecificUpdate(float dt)
 {
     m_PlayerController->Update(dt, m_EngineSystem);
     m_CameraController->Update(dt, m_EngineSystem);
+    m_BallController->Update(dt, m_EngineSystem);
 }
 
 bool Game::GameApp::GameSpecificShutdown()
@@ -63,6 +67,7 @@ void Game::GameApp::InitControllers()
 {
     m_PlayerController = std::make_unique<PlayerController>();
     m_CameraController = std::make_unique<CameraController>();
+    m_BallController = std::make_unique<BallController>();
 }
 
 void Game::GameApp::InitCamera()
@@ -101,4 +106,18 @@ void Game::GameApp::InitPlayer()
 
     m_EngineSystem.m_EntityManager->AddEntity(std::move(player));
 
+}
+
+void Game::GameApp::InitBall()
+{
+    ASSERT(m_EngineSystem.m_EntityManager.get() != nullptr, "Must pass valid pointer to entitymanager to Game::GameApp::InitPlayer()");
+
+    auto ball = std::make_unique<Engine::Entity>();
+
+    ball->AddComponent<Engine::TransformComponent>(0.f, 0.f, 100.f, 100.f);
+    ball->AddComponent<BallComponent>().m_Name = "Test ball";
+    ball->AddComponent<Engine::MoverComponent>(50,50);
+    ball->AddComponent<Engine::SpriteComponent>().m_Image = m_EngineSystem.m_TextureManager->GetTexture("blank");
+
+    m_EngineSystem.m_EntityManager->AddEntity(std::move(ball));
 }

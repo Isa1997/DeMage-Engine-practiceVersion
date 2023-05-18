@@ -27,6 +27,9 @@
     <ClInclude Include="src\Entities\CameraController.h">
       <Filter>src\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="BallController.h">
+      <Filter>src\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\precomp.cpp">
@@ -39,6 +42,9 @@
       <Filter>src\Entities</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\CameraController.cpp">
+      <Filter>src\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="BallController.cpp">
       <Filter>src\Entities</Filter>
     </ClCompile>
   </ItemGroup>

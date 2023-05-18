@@ -6,6 +6,7 @@ namespace Game
 {
     class CameraController;
     class PlayerController;
+    class BallController;
 
     class GameApp final : public Engine::Application
     {
@@ -22,10 +23,13 @@ namespace Game
         void InitControllers();
         void InitCamera();
         void InitPlayer();
+        void InitBall();
 
     private:
         std::unique_ptr<CameraController> m_CameraController{};
         std::unique_ptr<PlayerController> m_PlayerController{};
+        std::unique_ptr<BallController> m_BallController{};
+
     };
 }
 

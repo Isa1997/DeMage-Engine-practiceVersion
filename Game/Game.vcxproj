@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BallController.h" />
     <ClInclude Include="src\Core\GameApp.h" />
     <ClInclude Include="src\Entities\CameraController.h" />
     <ClInclude Include="src\Entities\GameComponents.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="src\precomp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BallController.cpp" />
     <ClCompile Include="src\Core\GameApp.cpp" />
     <ClCompile Include="src\Entities\CameraController.cpp" />
     <ClCompile Include="src\Entities\PlayerController.cpp" />
